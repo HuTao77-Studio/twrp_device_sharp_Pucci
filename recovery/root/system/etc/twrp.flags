@@ -1,0 +1,27 @@
+# mount point	fstype	device					device2				flags
+/boot           emmc    /dev/block/bootdevice/by-name/boot          flags=slotselect
+
+/system_root    ext4    /dev/block/by-name/system                   flags=slotselect;wipeingui;display="System";backup=1;wipeingui
+/vendor		    ext4    /dev/block/bootdevice/by-name/vendor		flags=slotselect;display="Vendor";backup=1;wipeingui
+/odm		    ext4    /dev/block/bootdevice/by-name/odm			flags=slotselect;display="Odm";backup=1;wipeingui
+/product		ext4    /dev/block/bootdevice/by-name/product		flags=slotselect;display="Product";backup=1;wipeingui
+/data		    ext4	/dev/block/bootdevice/by-name/userdata		flags=encryptable=footer
+
+/system_image	emmc    /dev/block/bootdevice/by-name/system		flags=slotselect
+/vendor_image	emmc	/dev/block/bootdevice/by-name/vendor		flags=slotselect
+/odm_image	    emmc	/dev/block/bootdevice/by-name/odm			flags=slotselect
+/product_image	emmc	/dev/block/bootdevice/by-name/product		flags=slotselect
+
+
+/firmware	    vfat	/dev/block/bootdevice/by-name/modem				flags=slotselect;display="Firmware";mounttodecrypt;fsflags=ro
+/misc		    emmc	/dev/block/bootdevice/by-name/misc
+/modem		    emmc	/dev/block/bootdevice/by-name/modem				flags=slotselect;backup=1;display="Modem"
+/bluetooth	    emmc	/dev/block/bootdevice/by-name/bluetooth			flags=slotselect;backup=1;subpartitionof=/modem
+/dsp		    emmc	/dev/block/bootdevice/by-name/dsp				flags=slotselect;backup=1;subpartitionof=/modem
+/efs1		    emmc	/dev/block/bootdevice/by-name/modemst1			flags=backup=1;display=EFS
+/efs2		    emmc	/dev/block/bootdevice/by-name/modemst2			flags=backup=1;subpartitionof=/efs1
+/efsc		    emmc	/dev/block/bootdevice/by-name/fsc				flags=backup=1;subpartitionof=/efs1
+/efsg		    emmc	/dev/block/bootdevice/by-name/fsg				flags=backup=1;subpartitionof=/efs1
+
+# Removable storage
+/usbstorage    auto     /dev/block/sdg1         /dev/block/sdg          flags=fsflags=utf8;display="USB Storage";storage;wipeingui;removable
